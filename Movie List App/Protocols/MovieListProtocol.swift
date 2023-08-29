@@ -5,6 +5,6 @@
 //  Created by Prakhar Pandey on 28/08/23.
 //
 
-protocol MovieListDelegate {
+protocol MovieListProtocol {
     func onSort(_ type: Sort)
 }

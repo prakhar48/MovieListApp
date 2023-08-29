@@ -15,8 +15,9 @@ final class MovieListViewModel: ObservableObject {
     
     // MARK: - View rendering data
     
-    @Published private(set) var movieList: [MovieList] = []
+    @Published private(set) var movieList: [Movie] = []
     @Published private(set) var sortOptions: [SortOption] = []
+    @Published private(set) var selectedMovie: Movie?
     
     // MARK: - Initializer
     
@@ -31,22 +32,17 @@ final class MovieListViewModel: ObservableObject {
         setMovieListData()
     }
     
-    func onDetail(_ id: String) {
-        
+    func onDetail(_ movie: Movie) {
+        selectedMovie = movie
     }
-    
-    func onWatchlist(_ id: String) {
-        
-    }
-    
-    // MARK: - Private methods
-    
 }
+
+// MARK: - Private methods
 
 extension MovieListViewModel {
     private func setMovieListData() {
         movieList = [
-            MovieList(
+            Movie(
                 icon: "movie1",
                 title: "Tenet",
                 description: "Armed with only one word, Tenet, and fighting for the survival of the entire world, a Protagonist journeys through a twilight world of international espionage on a mission that will unfold in something beyond real time.",
@@ -56,7 +52,7 @@ extension MovieListViewModel {
                 releasedDate: "3 September 2020",
                 trailerLink: "https://www.youtube.com/watch?v=LdOM0x0XDMo",
                 isWatchlisted: true),
-            MovieList(
+            Movie(
                 icon: "movie2",
                 title: "Spider-Man: Into the Spider-Verse",
                 description: "Teen Miles Morales becomes the Spider-Man of his universe, and must join with five spider-powered individuals from other dimensions to stop a threat for all realities.",
@@ -66,7 +62,7 @@ extension MovieListViewModel {
                 releasedDate: "14 December 2018",
                 trailerLink: "https://www.youtube.com/watch?v=tg52up16eq0",
                 isWatchlisted: false),
-            MovieList(
+            Movie(
                 icon: "movie3",
                 title: "Knives Out",
                 description: "A detective investigates the death of a patriarch of an eccentric, combative family.",
@@ -76,7 +72,7 @@ extension MovieListViewModel {
                 releasedDate: "27 November 2019",
                 trailerLink: "https://www.youtube.com/watch?v=qGqiHJTsRkQ",
                 isWatchlisted: false),
-            MovieList(
+            Movie(
                 icon: "movie4",
                 title: "Guardians of the Galaxy",
                 description: "A group of intergalactic criminals must pull together to stop a fanatical warrior with plans to purge the universe.",
@@ -86,7 +82,7 @@ extension MovieListViewModel {
                 releasedDate: "1 August 2014",
                 trailerLink: "https://www.youtube.com/watch?v=d96cjJhvlMA",
                 isWatchlisted: false),
-            MovieList(
+            Movie(
                 icon: "movie5",
                 title: "Avengers: Age of Ultron",
                 description: "When Tony Stark and Bruce Banner try to jump-start a dormant peacekeeping program called Ultron, things go horribly wrong and it's up to Earth's mightiest heroes to stop the villainous Ultron from enacting his terrible plan.",
@@ -109,11 +105,19 @@ extension MovieListViewModel {
 
 /* Movie list delegates */
 
-extension MovieListViewModel: MovieListDelegate {
+extension MovieListViewModel: MovieListProtocol {
     func onSort(_ type: Sort) {
         switch type {
         case .title: movieList = movieList.sorted { $0.title < $1.title }
         case .releaseDate: movieList = movieList.sorted { $0.releasedDate < $1.releasedDate }
         }
+    }
+}
+
+/* Movie Detail delegates */
+
+extension MovieListViewModel: MovieDetailProtocol {
+    func onWatchlist(_ id: String) {
+        
     }
 }

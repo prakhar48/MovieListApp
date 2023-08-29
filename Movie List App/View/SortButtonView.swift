@@ -9,10 +9,10 @@ import SwiftUI
 
 struct SortButtonView: View {
     @State private var showSortOptions: Bool = false
-    private let delegate: MovieListDelegate
+    private let delegate: MovieListProtocol
     private let options: [SortOption]
     
-    init(delegate: MovieListDelegate, options: [SortOption]) {
+    init(delegate: MovieListProtocol, options: [SortOption]) {
         self.delegate = delegate
         self.options = options
     }

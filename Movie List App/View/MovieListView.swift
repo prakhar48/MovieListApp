@@ -16,7 +16,7 @@ struct MovieListView: View {
     }
     
     var body: some View {
-        let data: [MovieList] = viewModel.movieList
+        let data: [Movie] = viewModel.movieList
         
         NavigationStack(path: $paths) {
             VStack(alignment: .leading, spacing: 0) {
@@ -52,15 +52,11 @@ struct MovieListView: View {
                                 Spacer()
                             }
                             
-                            Spacer().frame(height: 20.0)
-                            
                             Separator()
-                            
-                            Spacer().frame(height: 20.0)
                         }
                         .onTapGesture {
                             paths.append(1)
-                            viewModel.onDetail(movie.id)
+                            viewModel.onDetail(movie)
                         }
                     }
                     .navigationDestination(for: Int.self) { int in
@@ -80,9 +76,3 @@ struct MovieListView: View {
         }
     }
 }
-
-//struct MovieListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MovieListView(MovieListViewModel(service: MovieListService()))
-//    }
-//}

@@ -1,5 +1,5 @@
 //
-//  MovieList.swift
+//  Movie.swift
 //  Movie List App
 //
 //  Created by Prakhar Pandey on 28/08/23.
@@ -7,7 +7,7 @@
 
 import Foundation
  
-struct MovieList: Hashable {    
+struct Movie: Hashable {
     let id: String = UUID().uuidString
     let icon: String
     let title: String
