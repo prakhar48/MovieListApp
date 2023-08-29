@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Service adds functionality to make any network calls
 final class MovieListService: MovieListServiceProtocol {
  
     func access(_ link: String) {

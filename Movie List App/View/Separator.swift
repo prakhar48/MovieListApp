@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Adds divider with custom properties
 struct Separator: View {
     var body: some View {
         VStack(spacing: 0) {

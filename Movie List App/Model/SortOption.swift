@@ -10,6 +10,7 @@ enum Sort {
     case releaseDate
 }
 
+/// Provides different sorting options data
 struct SortOption: Hashable {
     
     let title: String

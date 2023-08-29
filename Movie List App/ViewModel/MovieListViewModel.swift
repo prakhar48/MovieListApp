@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Handles all data source, actions and manipulations
 final class MovieListViewModel: ObservableObject {
     
     // MARK: - Properties
@@ -106,6 +107,8 @@ extension MovieListViewModel {
 /* Movie list delegates */
 
 extension MovieListViewModel: MovieListProtocol {
+    /// Action performed on Sort Button click
+    /// - Parameter type: Sort type
     func onSort(_ type: Sort) {
         switch type {
         case .title: movieList = movieList.sorted { $0.title < $1.title }
@@ -117,6 +120,8 @@ extension MovieListViewModel: MovieListProtocol {
 /* Movie Detail delegates */
 
 extension MovieListViewModel: MovieDetailProtocol {
+    /// Action on watchlit button click
+    /// - Parameter id: Unique identifier
     func onWatchlist(_ id: String) {
         if let itemIndex = movieList.firstIndex(where: { $0.id == id }) {
             movieList.modifyElement(atIndex: itemIndex) { element in

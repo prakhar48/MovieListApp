@@ -5,12 +5,10 @@
 //  Created by Prakhar Pandey on 28/08/23.
 //
 
-import AVKit
 import SwiftUI
 
 struct MovieDetailView: View {
     @ObservedObject private var viewModel: MovieListViewModel
-    @State private var pathNews: [Int] = []
     
     init(_ viewModel: MovieListViewModel) {
         self.viewModel = viewModel

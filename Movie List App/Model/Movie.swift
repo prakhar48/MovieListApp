@@ -6,7 +6,8 @@
 //
 
 import Foundation
- 
+
+/// Movie data model to store the movies meta
 struct Movie: Hashable {
     let id: String = UUID().uuidString
     let icon: String
