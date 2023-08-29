@@ -51,7 +51,7 @@ extension MovieListViewModel {
                 genre: "Action, Sci-Fi",
                 releasedDate: "3 September 2020",
                 trailerLink: "https://www.youtube.com/watch?v=LdOM0x0XDMo",
-                isWatchlisted: true),
+                isWatchlisted: false),
             Movie(
                 icon: "movie2",
                 title: "Spider-Man: Into the Spider-Verse",
@@ -118,6 +118,15 @@ extension MovieListViewModel: MovieListProtocol {
 
 extension MovieListViewModel: MovieDetailProtocol {
     func onWatchlist(_ id: String) {
-        
+        if let itemIndex = movieList.firstIndex(where: { $0.id == id }) {
+            movieList.modifyElement(atIndex: itemIndex) { element in
+                element.isWatchlisted.toggle()
+                selectedMovie?.isWatchlisted = element.isWatchlisted
+            }
+        }
+    }
+    
+    func onTrailer(_ link: String) {
+        service.access(link)
     }
 }

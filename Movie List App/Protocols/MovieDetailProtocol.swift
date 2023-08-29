@@ -7,4 +7,5 @@
 
 protocol MovieDetailProtocol {
     func onWatchlist(_ id: String)
+    func onTrailer(_ link: String)
 }

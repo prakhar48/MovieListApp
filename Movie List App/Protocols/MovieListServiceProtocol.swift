@@ -6,4 +6,5 @@
 //
 
 protocol MovieListServiceProtocol {
+    func access(_ link: String)
 }
